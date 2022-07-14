@@ -1,4 +1,4 @@
-package grupo_c_m_o_v_asistencia_admin.demo.features.diasfestivos;
+package grupo_c_m_o_v_asistencia_admin.demo.feature.diasfestivos;
 
 import java.sql.Timestamp;
 

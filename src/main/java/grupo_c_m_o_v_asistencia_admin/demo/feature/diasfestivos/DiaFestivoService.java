@@ -1,4 +1,4 @@
-package grupo_c_m_o_v_asistencia_admin.demo.features.diasfestivos;
+package grupo_c_m_o_v_asistencia_admin.demo.feature.diasfestivos;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
