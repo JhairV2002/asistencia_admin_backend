@@ -2,9 +2,9 @@ create table actividades(
 actividad_id serial,
 	nombre character varying,
 	categoria character varying,
-	creates timestamp without time zone,
-	updates timestamp without time zone,
-	unable boolean,
+	created timestamp without time zone,
+	updated timestamp without time zone,
+	enabled boolean,
 	archivate boolean
 
 );

@@ -19,9 +19,9 @@ public class Actividad {
     
     private String actividad;
     private String categoria;
-    private Timestamp creates;
-    private Timestamp  updates;
-    private  boolean unable;
+    private Timestamp created;
+    private Timestamp  updated;
+    private  boolean enabled;
     private boolean archive ;
 
     
