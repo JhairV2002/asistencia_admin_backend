@@ -1,0 +1,9 @@
+create table roles (
+    rol_id serial not null,
+    nombre varchar(50) not null,
+    admin boolean not null,
+    created timestamp not null,
+    updated timestamp not null,
+    enable boolean not null,
+    archived boolean not null
+);
