@@ -1,0 +1,12 @@
+create table actividades(
+actividad_id serial,
+	nombre character varying,
+	categoria character varying,
+	creates timestamp without time zone,
+	updates timestamp without time zone,
+	unable boolean,
+	archivate boolean
+
+);
+drop table actividades;
+select * from actividades;
