@@ -17,12 +17,12 @@ public class Actividad {
     @Column("actividad_id")
     private long actividadId;
     
-    private String actividad;
+    private String nombre;
     private String categoria;
     private Timestamp created;
     private Timestamp  updated;
-    private  boolean enabled;
-    private boolean archive ;
+    private boolean enabled;
+    private boolean archivate ;
 
     
 }
