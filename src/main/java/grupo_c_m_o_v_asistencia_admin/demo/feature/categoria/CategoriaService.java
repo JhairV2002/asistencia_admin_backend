@@ -1,5 +1,7 @@
 package grupo_c_m_o_v_asistencia_admin.demo.feature.categoria;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +30,12 @@ public class CategoriaService {
         categoriaRepository.deleteById(id);
     }
     
+    public List<Categoria> findAll(){
+        return categoriaRepository.findAll();
+    }
+
+    public List<Categoria> findByNombre(String term){
+        return categoriaRepository.findByNombreLikeIgnoreCase(term+"%");
+
+    }
 }
