@@ -1,5 +1,7 @@
 package grupo_c_m_o_v_asistencia_admin.demo.features.diasfestivos;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -47,6 +49,16 @@ public class DiaFestivoController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id){
         diaFestivoService.deleteById(id);
+    }
+
+    @GetMapping("/findAll")
+    public List<DiaFestivo> findAll(){
+        return diaFestivoService.findAll();
+    }
+
+    @GetMapping("/findByName/{term}")
+    public List<DiaFestivo> findByName(@PathVariable String term){
+        return diaFestivoService.findByName(term);
     }
 
 }

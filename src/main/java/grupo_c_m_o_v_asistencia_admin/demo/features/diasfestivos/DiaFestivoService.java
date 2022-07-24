@@ -1,5 +1,7 @@
 package grupo_c_m_o_v_asistencia_admin.demo.features.diasfestivos;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,4 +30,12 @@ public class DiaFestivoService {
         diaFestivoRepository.deleteById(id);
     }
     
+    public List<DiaFestivo> findAll(){
+        return diaFestivoRepository.findAll();
+    }
+
+    public List<DiaFestivo> findByName(String term){
+        return diaFestivoRepository.findByNameLikeIgnoreCase(term + "%");   
+
+    }
 }
