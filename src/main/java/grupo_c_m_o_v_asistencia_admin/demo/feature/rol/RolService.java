@@ -34,7 +34,7 @@ public class RolService {
     }
 
     public List<Rol> findByName(String term) {
-        return rolRepository.findByNameLikeIgnoreCase(term);
+        return rolRepository.findByNameLikeIgnoreCase(term + "%");
     }
 
 }
