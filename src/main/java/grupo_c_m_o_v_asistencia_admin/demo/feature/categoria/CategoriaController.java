@@ -1,4 +1,7 @@
+
 package grupo_c_m_o_v_asistencia_admin.demo.feature.categoria;
+
+import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -47,6 +50,16 @@ public class CategoriaController {
     @ResponseStatus(HttpStatus.NO_CONTENT)
     public void delete(@PathVariable long id){
         categoriaService.deleteById(id);
+    }
+
+    @GetMapping("/findAll")
+    public List<Categoria> findAll(){
+        return categoriaService.findAll();
+    }
+ 
+    @GetMapping("/findByNombe/term{}")
+    public List<Categoria> finfByNombre(@PathVariable String term){
+        return categoriaService.findByNombre(term);
     }
 
 }

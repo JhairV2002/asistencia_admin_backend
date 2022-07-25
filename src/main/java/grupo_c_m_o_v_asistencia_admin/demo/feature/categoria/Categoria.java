@@ -23,5 +23,5 @@ public class Categoria {
     private Timestamp updated;
     private boolean enabled;
     private boolean archived;
-
+    
 }
