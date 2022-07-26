@@ -56,8 +56,8 @@ public class CategoriaController {
         return categoriaService.findAll();
     }
  
-    @GetMapping("/findByNombe/term{}")
-    public List<Categoria> finfByNombre(@PathVariable String term){
+    @GetMapping("/findByNombre/{term}")
+    public List<Categoria> findByNombre(@PathVariable String term){
         return categoriaService.findByNombre(term);
     }
 
