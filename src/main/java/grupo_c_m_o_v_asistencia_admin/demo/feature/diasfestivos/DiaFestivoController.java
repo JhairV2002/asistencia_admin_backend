@@ -17,37 +17,36 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/diaFestivo")
-@CrossOrigin({"*"})
+@CrossOrigin({ "*" })
 public class DiaFestivoController {
-    
+
     @Autowired
     DiaFestivoService diaFestivoService;
 
-    //CRUD
+    // CRUD
 
-    //Create
+    // Create
     @PostMapping("/save")
-    public DiaFestivo save(@RequestBody DiaFestivo diaFestivo){
+    public DiaFestivo save(@RequestBody DiaFestivo diaFestivo) {
         return diaFestivoService.save(diaFestivo);
     }
 
-    //Read
+    // Read
     @GetMapping("/{id}")
-    public DiaFestivo findById(@PathVariable long id){
+    public DiaFestivo findById(@PathVariable long id) {
         return diaFestivoService.findById(id);
     }
 
-    //Update
+    // Update
     @PutMapping("/update")
-    public DiaFestivo update(@RequestBody DiaFestivo diaFestivo)
-    {
+    public DiaFestivo update(@RequestBody DiaFestivo diaFestivo) {
         return diaFestivoService.save(diaFestivo);
     }
 
-    //Delete
+    // Delete
     @DeleteMapping("/deleteById/{id}")
     @ResponseStatus(HttpStatus.NO_CONTENT)
-    public void delete(@PathVariable long id){
+    public void delete(@PathVariable long id) {
         diaFestivoService.deleteById(id);
     }
 
