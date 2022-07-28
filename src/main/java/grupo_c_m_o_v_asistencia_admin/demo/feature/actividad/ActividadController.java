@@ -1,5 +1,5 @@
 package grupo_c_m_o_v_asistencia_admin.demo.feature.actividad;
-
+import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.CrossOrigin;
@@ -48,5 +48,15 @@ public class ActividadController {
     public void delete(@PathVariable long id){
         actividadService.deleteById(id);
     }
+    @GetMapping("/findAll")
+    public List<Actividad> findAll(){
+        return actividadService.findAll();
+    }
+
+    @GetMapping("/findByName/{term}")
+    public List<Actividad> findByName(@PathVariable String term){
+        return actividadService.findByName(term);
+    }
+
 
 }

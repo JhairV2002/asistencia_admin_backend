@@ -2,7 +2,7 @@ package grupo_c_m_o_v_asistencia_admin.demo.feature.actividad;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-
+import java.util.List;
 @Service
 public class ActividadService {
 
@@ -26,6 +26,13 @@ public class ActividadService {
 
     public void deleteById(long id){
         actividadRepository.deleteById(id);
+    }
+    public List<Actividad> findAll(){
+        return actividadRepository.findAll();
+    }
+
+    public List<Actividad> findByName(String term){
+        return actividadRepository.findByNameLikeIgnoreCase(term+"%");
     }
     
 }
