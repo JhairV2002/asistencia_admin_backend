@@ -1,0 +1,7 @@
+CREATE TABLE IF NOT EXISTS public.categoria_actividad
+(
+    categoria_actividad_id integer NOT NULL DEFAULT nextval('categoria_actividad_categoria_actividad_id_seq'::regclass),
+    nombre character varying(200) COLLATE pg_catalog."default",
+    secuencia integer NOT NULL DEFAULT nextval('categoria_actividad_secuencia_seq'::regclass),
+    color character varying(200) COLLATE pg_catalog."default",
+    created timestam

@@ -26,6 +26,7 @@ public class Categoria {
     private Timestamp updated;
     private boolean enabled;
     private boolean archived;
+    @Column("rol_id")
     private Long rolId;
     
     @MappedCollection(idColumn = "actividad_id")
