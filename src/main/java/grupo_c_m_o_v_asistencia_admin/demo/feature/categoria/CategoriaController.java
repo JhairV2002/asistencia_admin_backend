@@ -62,4 +62,8 @@ public class CategoriaController {
         return categoriaService.findByNombre(term);
     }
 
+    // @GetMapping("/findById/{id}")
+    // public Categoria findById(@PathVariable long id){
+    //     return categoriaService.findById(id);
+    // }
 }

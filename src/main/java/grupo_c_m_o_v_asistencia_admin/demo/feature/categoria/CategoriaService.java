@@ -38,4 +38,7 @@ public class CategoriaService {
         return categoriaRepository.findByNombreLikeIgnoreCase(term + "%");
     }
 
+    public Categoria findByNombre(long id){
+        return categoriaRepository.findById(id).orElse (new Categoria());
+    }
 }
