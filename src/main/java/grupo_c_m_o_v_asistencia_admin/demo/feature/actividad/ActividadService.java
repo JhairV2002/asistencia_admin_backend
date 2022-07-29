@@ -32,9 +32,9 @@ public class ActividadService {
     public List<Actividad> findAll(){
         return actividadRepository.findAll();
     }
-    
+
     public List<Actividad> findByNombre(String term){
         return actividadRepository.findByNombreLikeIgnoreCase(term + "%");   
-
+    }
     
 }
