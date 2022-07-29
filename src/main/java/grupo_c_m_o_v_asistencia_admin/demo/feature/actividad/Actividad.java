@@ -6,6 +6,9 @@ import java.sql.Timestamp;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
 import org.springframework.data.relational.core.mapping.Table;
+import java.util.HashSet;
+import java.util.Set;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 
 import lombok.Data;
 
@@ -18,11 +21,13 @@ public class Actividad {
     private long actividadId;
     
     private String nombre;
-    private String categoria;
+    private long categoria;
     private Timestamp created;
     private Timestamp  updated;
     private boolean enabled;
     private boolean archivate ;
 
+    @MappedCollection(idColumn = "actividad_id")
+    private Set<ActividadFestivos> festividades = new HashSet<>();
     
 }
