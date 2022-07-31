@@ -1,5 +1,6 @@
 package grupo_c_m_o_v_asistencia_admin.demo.feature.diasfestivos;
 
+import java.sql.Date;
 import java.sql.Timestamp;
 
 import org.springframework.data.annotation.Id;
@@ -20,7 +21,7 @@ public class DiaFestivo {
     private String name;
 
     @Column("fecha_dia_festivo")
-    private Timestamp date;
+    private Date date;
 
     private Timestamp created;
     private Timestamp updated;
