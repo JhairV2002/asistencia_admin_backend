@@ -55,7 +55,7 @@ public class RolController {
         return rolService.findAll();
     }
 
-    @GetMapping("findByName/term{}")
+    @GetMapping("findByName/{term}")
     public List<Rol> findByName(@PathVariable String term) {
         return rolService.findByName(term);
     }
