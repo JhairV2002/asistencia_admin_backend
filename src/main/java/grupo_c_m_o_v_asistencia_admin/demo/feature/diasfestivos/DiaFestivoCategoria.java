@@ -11,9 +11,10 @@ import lombok.Data;
 public class DiaFestivoCategoria {
 
     @Id private long id;
+
     @Column("dia_festivo_id")
     private Long dayId;
     @Column("categoria_id")
-    private Long categoriaId;
+    private Long categoriaActividadId;
     
 }
