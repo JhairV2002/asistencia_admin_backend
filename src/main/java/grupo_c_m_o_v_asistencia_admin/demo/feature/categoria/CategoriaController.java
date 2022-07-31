@@ -32,10 +32,10 @@ public class CategoriaController {
     }
 
     //Read
-    @GetMapping("/{id}")
-    public Categoria findById(@PathVariable long id){
-        return categoriaService.findById(id);
-    }
+    // @GetMapping("/{id}")
+    // public Categoria findById(@PathVariable long id){
+    //     return categoriaService.findById(id);
+    // }
 
     //Update
     @PutMapping("/update")
