@@ -1,0 +1,17 @@
+CREATE TABLE IF NOT EXISTS public.dias_festivos_categorias
+(
+    id serial NOT NULL,
+    dia_festivo_id integer,
+    categoria_id integer,
+    CONSTRAINT dias_festivos_categorias_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_categorias FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT fk_dias_festivos FOREIGN KEY (dia_festivo_id)
+        REFERENCES public.dias_festivos (id_dia_festivo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+)
