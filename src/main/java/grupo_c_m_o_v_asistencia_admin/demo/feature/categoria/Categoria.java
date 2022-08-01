@@ -2,9 +2,12 @@ package grupo_c_m_o_v_asistencia_admin.demo.feature.categoria;
 
 //import java.sql.Time;
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.Data;
@@ -23,5 +26,9 @@ public class Categoria {
     private Timestamp updated;
     private boolean enabled;
     private boolean archived;
+    @Column("rol_id")
+    private Long rolId;
 
+    @MappedCollection(idColumn = "categoria_id")
+    private Set <CategoriaActividades> actividades = new HashSet<>();
 }
