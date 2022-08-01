@@ -22,10 +22,9 @@ public class DiaFestivo {
 
     @Column("fecha_dia_festivo")
     private Date date;
-
     private Timestamp created;
     private Timestamp updated;
     private boolean archived;
     private boolean enabled;
-    
+
 }
