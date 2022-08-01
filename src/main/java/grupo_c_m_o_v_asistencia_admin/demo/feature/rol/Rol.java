@@ -1,9 +1,12 @@
 package grupo_c_m_o_v_asistencia_admin.demo.feature.rol;
 
 import java.sql.Timestamp;
+import java.util.HashSet;
+import java.util.Set;
 
 import org.springframework.data.annotation.Id;
 import org.springframework.data.relational.core.mapping.Column;
+import org.springframework.data.relational.core.mapping.MappedCollection;
 import org.springframework.data.relational.core.mapping.Table;
 
 import lombok.Data;
@@ -22,10 +25,15 @@ public class Rol {
     private String name;
     @Column("admin")
     private boolean isAdmin;
-    private Timestamp created; 
-    private Timestamp updated; 
+    private Timestamp created;
+    private Timestamp updated;
     @Column("enable")
     private boolean isEnabled;
     @Column("archived")
     private boolean isArchived;
+    @Column("categoria_actividad_id")
+    private Long categoriaActividadId;
+
+    @MappedCollection(idColumn = "rol_id")
+    private Set<RolPerson> persons = new HashSet<>();
 }
