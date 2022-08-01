@@ -1,11 +1,12 @@
 CREATE TABLE IF NOT EXISTS public.dias_festivos
 (
-    id_dia_festivo integer NOT NULL DEFAULT nextval('dias_festivos_id_dia_festivo_seq'::regclass),
+    id_dia_festivo serial NOT NULL,
     nombre_dia_festivo character varying COLLATE pg_catalog."default",
-    fecha_dia_festivo timestamp without time zone,
+    fecha_dia_festivo date,
     created timestamp without time zone,
     updated timestamp without time zone,
     archived boolean,
     enabled boolean,
+    fk_roles integer,
     CONSTRAINT dias_festivos_pkey PRIMARY KEY (id_dia_festivo)
-);
+)
