@@ -1,3 +1,5 @@
+TABLAS PRINCIPALES
+
 CREATE TABLE IF NOT EXISTS public.actividades
 (
     actividad_id serial NOT NULL,
@@ -8,12 +10,9 @@ CREATE TABLE IF NOT EXISTS public.actividades
     enabled boolean,
     archivate boolean,
     categoria_id integer,
-    CONSTRAINT actividades_pkey PRIMARY KEY (actividad_id),
-    CONSTRAINT fk_actividades_categoria FOREIGN KEY (categoria_id)
-        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
+    CONSTRAINT actividades_pkey PRIMARY KEY (actividad_id)
+);
+
 
 CREATE TABLE IF NOT EXISTS public.categoria_actividad
 (
@@ -26,13 +25,9 @@ CREATE TABLE IF NOT EXISTS public.categoria_actividad
     enabled boolean NOT NULL,
     archived boolean NOT NULL,
     rol_id integer,
-    CONSTRAINT categoria_actividad_pkey PRIMARY KEY (categoria_actividad_id),
-    CONSTRAINT fk_rol FOREIGN KEY (rol_id)
-        REFERENCES public.roles (rol_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-        NOT VALID
-)
+    CONSTRAINT categoria_actividad_pkey PRIMARY KEY (categoria_actividad_id)
+);
+
 
 CREATE TABLE IF NOT EXISTS public.dias_festivos
 (
@@ -45,7 +40,10 @@ CREATE TABLE IF NOT EXISTS public.dias_festivos
     enabled boolean,
     fk_roles integer,
     CONSTRAINT dias_festivos_pkey PRIMARY KEY (id_dia_festivo)
-)
+);
+
+
+
 CREATE TABLE IF NOT EXISTS public.personas
 (
     id serial NOT NULL DEFAULT,
@@ -53,7 +51,9 @@ CREATE TABLE IF NOT EXISTS public.personas
     lastname character varying(50) COLLATE pg_catalog."default" NOT NULL,
     enabled boolean NOT NULL,
     CONSTRAINT personas_pkey PRIMARY KEY (id)
-)
+);
+
+
 
 CREATE TABLE IF NOT EXISTS public.roles
 (
@@ -66,11 +66,9 @@ CREATE TABLE IF NOT EXISTS public.roles
     archived boolean NOT NULL,
     categoria_actividad_id integer,
     CONSTRAINT rol_pkey PRIMARY KEY (rol_id),
-    CONSTRAINT fk_categoria_roles FOREIGN KEY (categoria_actividad_id)
-        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
-        ON UPDATE NO ACTION
-        ON DELETE NO ACTION
-)
+
+);
+
 
 
 
@@ -90,7 +88,7 @@ CREATE TABLE IF NOT EXISTS public.dias_festivos_categorias
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
         NOT VALID
-)
+);
 
 
 CREATE TABLE IF NOT EXISTS public.rol_person
@@ -107,7 +105,7 @@ CREATE TABLE IF NOT EXISTS public.rol_person
         REFERENCES public.roles (rol_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
 
 
 CREATE TABLE IF NOT EXISTS public.actividad_dias_festivos
@@ -123,12 +121,7 @@ CREATE TABLE IF NOT EXISTS public.actividad_dias_festivos
         REFERENCES public.dias_festivos (id_dia_festivo) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
-*TABLA PRIMARIA*
-
-
-
-*TABLA DE ROMPIMIENTO*
+);
 
 CREATE TABLE IF NOT EXISTS public.categoria_actividades
 (
@@ -144,4 +137,133 @@ CREATE TABLE IF NOT EXISTS public.categoria_actividades
         REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
         ON UPDATE NO ACTION
         ON DELETE NO ACTION
-)
+);
+
+
+
+
+    ALTER TABLE public.actividades add
+    CONSTRAINT fk_actividades_categoria FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+
+
+    ALTER TABLE public.categoria_actividad add
+    CONSTRAINT fk_rol FOREIGN KEY (rol_id)
+        REFERENCES public.roles (rol_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+
+
+    ALTER TABLE public.roles add
+    CONSTRAINT fk_categoria_actividad_id FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+
+
+    ALTER TABLE public.dias_festivos add
+    CONSTRAINT fk_roles_id FOREIGN KEY (rol_id)
+        REFERENCES public.roles (rol_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+
+CREATE TABLE IF NOT EXISTS public.dias_festivos_categorias
+(
+    id serial NOT NULL,
+    dia_festivo_id integer,
+    categoria_id integer,
+    CONSTRAINT dias_festivos_categorias_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_categorias FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID,
+    CONSTRAINT fk_dias_festivos FOREIGN KEY (dia_festivo_id)
+        REFERENCES public.dias_festivos (id_dia_festivo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+        NOT VALID
+);
+
+
+CREATE TABLE IF NOT EXISTS public.rol_person
+(
+    id serial NOT NULL,
+    rol_id integer,
+    person_id integer,
+    CONSTRAINT role_person_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_person_id FOREIGN KEY (person_id)
+        REFERENCES public.personas (id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_rol_id FOREIGN KEY (rol_id)
+        REFERENCES public.roles (rol_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+
+CREATE TABLE IF NOT EXISTS public.actividad_dias_festivos
+(
+    id serial NOT NULL,
+    actividad_id integer,
+    dias_festivos_id integer,
+    CONSTRAINT fk_actividades FOREIGN KEY (actividad_id)
+        REFERENCES public.actividades (actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_dias_feriados FOREIGN KEY (dias_festivos_id)
+        REFERENCES public.dias_festivos (id_dia_festivo) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+CREATE TABLE IF NOT EXISTS public.categoria_actividades
+(
+    id serial NOT NULL,
+    categoria_id integer,
+    actividad_id integer,
+    CONSTRAINT categoria_actividades_pkey PRIMARY KEY (id),
+    CONSTRAINT fk_actividad FOREIGN KEY (actividad_id)
+        REFERENCES public.actividades (actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION,
+    CONSTRAINT fk_categoria FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION
+);
+
+
+
+
+    ALTER TABLE public.actividades add
+    CONSTRAINT fk_actividades_categoria FOREIGN KEY (categoria_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+
+
+    ALTER TABLE public.categoria_actividad add
+    CONSTRAINT fk_rol FOREIGN KEY (rol_id)
+        REFERENCES public.roles (rol_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+
+
+    ALTER TABLE public.roles add
+    CONSTRAINT fk_categoria_actividad_id FOREIGN KEY (categoria_actividad_id)
+        REFERENCES public.categoria_actividad (categoria_actividad_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+
+
+    ALTER TABLE public.dias_festivos add
+    CONSTRAINT fk_roles_id FOREIGN KEY (fk_roles)
+        REFERENCES public.roles (rol_id) MATCH SIMPLE
+        ON UPDATE NO ACTION
+        ON DELETE NO ACTION;
+
+        
