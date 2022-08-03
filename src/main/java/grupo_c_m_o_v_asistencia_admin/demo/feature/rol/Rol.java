@@ -20,7 +20,7 @@ import lombok.Data;
 public class Rol {
     @Id
     @Column("rol_id")
-    private Long rolId;
+    private long rolId;
     @Column("nombre")
     private String name;
     @Column("admin")
